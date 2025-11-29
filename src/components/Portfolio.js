@@ -6,7 +6,7 @@ export const Portfolio = () => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    const query = `*[_type == "portfolioImage"] | order(_createdAt desc)[0...15]{
+    const query = `*[_type == "portfolioImage" && defined(mainImage)] | order(_createdAt desc)[0...15]{
       _id,
       title,
       description,
@@ -16,9 +16,12 @@ export const Portfolio = () => {
 
     client
       .fetch(query)
-      .then((data) => setPhotos(data))
+      .then((data) => {
+        console.log('Portfolio data fetched:', data);
+        setPhotos(data);
+      })
       .catch((err) => {
-        console.error(err);
+        console.error('Error fetching portfolio:', err);
         setPhotos([]);
       });
   }, []);

@@ -5,9 +5,7 @@ export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    // Expects a Sanity schema type called "testimonial"
-    // with fields: name, role, quote.
-    const query = `*[_type == "testimonial"] | order(_createdAt desc)[0...6]{
+    const query = `*[_type == "testimonial" && defined(quote)] | order(_createdAt desc)[0...6]{
       _id,
       name,
       role,
@@ -16,9 +14,12 @@ export const Testimonials = () => {
 
     client
       .fetch(query)
-      .then((data) => setTestimonials(data))
+      .then((data) => {
+        console.log('Testimonials data fetched:', data);
+        setTestimonials(data);
+      })
       .catch((err) => {
-        console.error(err);
+        console.error('Error fetching testimonials:', err);
         setTestimonials([]);
       });
   }, []);
