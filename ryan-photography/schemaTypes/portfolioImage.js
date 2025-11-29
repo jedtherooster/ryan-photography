@@ -23,7 +23,7 @@ export default defineType({
       options: {
         list: [
           {title: 'School Events', value: 'school'},
-          {title: 'Parties', value: 'parties'},
+          {title: 'Events', value: 'events'},
           {title: 'Business', value: 'business'},
           {title: 'Portraits', value: 'portraits'}
         ]
