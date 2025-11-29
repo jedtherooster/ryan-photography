@@ -22,9 +22,7 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'School Events', value: 'school'},
           {title: 'Events', value: 'events'},
-          {title: 'Business', value: 'business'},
           {title: 'Portraits', value: 'portraits'}
         ]
       }
